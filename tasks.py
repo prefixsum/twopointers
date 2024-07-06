@@ -21,7 +21,7 @@ async def post_daily_challenge_thread():
     return None
 
 
-@tasks.loop(time=datetime.time(hour=1, minute=30, second=0))
+@tasks.loop(time=datetime.time(hour=1, minute=30, second=30))
 async def post_weekly_contest_thread():
     print("Checking for weekly contest...")
     # Get next weekly contest
@@ -34,7 +34,7 @@ async def post_weekly_contest_thread():
     # Check time until contest
     current_time = datetime.datetime.now()
     contest_start_time = datetime.datetime.fromtimestamp(contest["startTime"])
-    if contest_start_time - current_time > datetime.timedelta(hours=48):
+    if contest_start_time - current_time > datetime.timedelta(hours=6):
         print("No weekly contest today.")
         return None
     # Create thread
@@ -50,7 +50,7 @@ async def post_weekly_contest_thread():
     return None
 
 
-@tasks.loop(time=datetime.time(hour=13, minute=30, second=0))
+@tasks.loop(time=datetime.time(hour=13, minute=30, second=30))
 async def post_biweekly_contest_thread():
     print("Checking for biweekly contest...")
     # Get next biweekly contest
@@ -63,7 +63,7 @@ async def post_biweekly_contest_thread():
     # Check time until contest
     current_time = datetime.datetime.now()
     contest_start_time = datetime.datetime.fromtimestamp(contest["startTime"])
-    if contest_start_time - current_time > datetime.timedelta(hours=48):
+    if contest_start_time - current_time > datetime.timedelta(hours=6):
         print("No biweekly contest today.")
         return None
     # Create thread
