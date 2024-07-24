@@ -1,5 +1,5 @@
 import requests
-from config import LEETCODE_API_URL
+from settings import LEETCODE_API_URL
 
 
 def get_daily_challenge():
